@@ -268,7 +268,9 @@ export async function logOutSession(req: Request, res: Response): Promise<any> {
   try {
     const session = req.session;
     await req.client.logout();
-    await req.client.close();
+    // try {
+    //   await req.client.close();
+    // } catch (error) {}
     deleteSessionOnArray(req.session);
 
     setTimeout(async () => {
@@ -302,9 +304,7 @@ export async function logOutSession(req: Request, res: Response): Promise<any> {
         .status(200)
         .json({ status: true, message: 'Session successfully closed' });
     }, 500);
-    try {
-      await req.client.close();
-    } catch (error) {}
+
   } catch (error) {
     req.logger.error(error);
     res
