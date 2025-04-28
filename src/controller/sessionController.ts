@@ -330,10 +330,11 @@ export async function checkConnectionSession(
    */
   try {
     await req.client.isConnected();
-
-    res.status(200).json({ status: true, message: 'Connected' });
+    const phoneNumber = await req.client.getWid();
+    
+    res.status(200).json({ status: true, message: 'Connected', number: phoneNumber });
   } catch (error) {
-    res.status(200).json({ status: false, message: 'Disconnected' });
+    res.status(200).json({ status: false, message: 'Disconnected'});
   }
 }
 
