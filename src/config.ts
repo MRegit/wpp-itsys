@@ -12,17 +12,17 @@ export default {
   customUserDataDir: './userDataDir/',
   webhook: {
     url: null,
-    autoDownload: true,
+    autoDownload: false,
     uploadS3: false,
-    readMessage: true,
+    readMessage: false,
     allUnreadOnStart: false,
-    listenAcks: true,
-    onPresenceChanged: true,
-    onParticipantsChanged: true,
-    onReactionMessage: true,
-    onPollResponse: true,
-    onRevokedMessage: true,
-    onLabelUpdated: true,
+    listenAcks: false,
+    onPresenceChanged: false,
+    onParticipantsChanged: false,
+    onReactionMessage: false,
+    onPollResponse: false,
+    onRevokedMessage: false,
+    onLabelUpdated: false,
     onSelfMessage: false,
     ignore: ['status@broadcast'],
   },
@@ -45,9 +45,16 @@ export default {
   },
   createOptions: {
     browserArgs: [
-      '--disable-web-security',
-      '--no-sandbox',
-      '--disable-web-security',
+      '--no-sandbox', 
+      '--disable-web-security', 
+      '--disable-gpu', 
+      '--disable-setuid-sandbox', 
+      '--disable-dev-shm-usage',
+      '--disable-infobars',
+      '--disable-popup-blocking',
+      '--disable-notifications',
+      '--disable-background-timer-throttling', 
+      '--disable-component-update', 
       '--aggressive-cache-discard',
       '--disable-cache',
       '--disable-application-cache',
@@ -62,19 +69,15 @@ export default {
       '--metrics-recording-only',
       '--mute-audio',
       '--no-first-run',
-      '--safebrowsing-disable-auto-update',
-      '--ignore-certificate-errors',
-      '--ignore-ssl-errors',
-      '--ignore-certificate-errors-spki-list',
+      '--enable-low-end-device-mode', 
+      '--enable-memory-reducer', 
+      '--renderer-process-limit=1', 
+      '--enable-tab-discarding', 
+      '--no-zygote', 
+      '--disable-site-isolation-trials', 
+      '--javascript-harmony-shipping', 
+      '--memory-pressure-thresholds-mb=512'
     ],
-    /**
-     * Example of configuring the linkPreview generator
-     * If you set this to 'null', it will use global servers; however, you have the option to define your own server
-     * Clone the repository https://github.com/wppconnect-team/wa-js-api-server and host it on your server with ssl
-     *
-     * Configure the attribute as follows:
-     * linkPreviewApiServers: [ 'https://www.yourserver.com/wa-js-api-server' ]
-     */
     linkPreviewApiServers: null,
   },
   mapper: {

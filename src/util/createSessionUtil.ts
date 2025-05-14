@@ -124,7 +124,7 @@ export default class CreateSessionUtil {
                   session: client.session,
                 });
                 req.logger.info(statusFind + '\n\n');
-              } catch (error) {}
+              } catch (error) { }
             },
           }
         )
@@ -270,10 +270,11 @@ export default class CreateSessionUtil {
     }
 
     await this.checkStateSession(client, req);
-    await this.listenMessages(client, req);
+
 
     if (req.serverOptions.webhook.listenAcks) {
       await this.listenAcks(client, req);
+      await this.listenMessages(client, req);
     }
 
     if (req.serverOptions.webhook.onPresenceChanged) {
